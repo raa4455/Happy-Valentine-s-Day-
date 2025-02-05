@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
+    
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <title>Happy Valentine's Day</title>
     <style>
+        
         /* General page styling */
         body {
             font-family: sans-serif;
@@ -77,6 +82,44 @@
             background: #fe41f2;
             transform: scale(1.05); /* Slightly enlarges on hover */
         }
+
+        audio {
+    margin-top: 20px;
+    width: 100%; /* Make audio player responsive */
+}
+
+.next-page-button {
+    margin-top: 20px;
+    background: #ff71fa;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.next-page-button:hover {
+    background: #fe41f2;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .love-text {
+        font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  
+        /* font-size: 1.5em; */
+    }
+    .love-image {
+        max-width: 150px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -89,17 +132,37 @@
         <div class="image-container">
             <img src="p1.jpg" alt="Love Image" class="love-image">
             <img src="p2.jpg" alt="Love Image" class="love-image">
-            <img src="p3.jpg" alt="Love Image" class="love-image">
             <img src="p5.jpg" alt="Love Image" class="love-image">
+            <!-- <img src="p5.jpg" alt="Love Image" class="love-image"> -->
         </div>
         <div class="image-container">
-            <img src="p1.jpg" alt="Love Image" class="love-image">
-            <img src="p2.jpg" alt="Love Image" class="love-image">
             <img src="p3.jpg" alt="Love Image" class="love-image">
-            <img src="p5.jpg" alt="Love Image" class="love-image">
+            <img src="p8.jpg" alt="Love Image" class="love-image">
+            <img src="p4.jpg" alt="Love Image" class="love-image">
+            
         </div>
+        
+            <audio src="loy.mp3" controls></audio>
         <a href="4.html" class="next-page-button"> ♥</a>
     </div>
-
+    <script>// script.js (or you can embed this in your HTML)
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.querySelector('audio');
+        
+            if (audio) {
+                audio.autoplay = true; // Autoplay the audio
+        
+                // Loop the audio (optional)
+                audio.loop = true;
+        
+                // Add an event listener for errors (in case the file is not found)
+                audio.addEventListener('error', function(error) {
+                    console.error('Error loading audio:', error);
+                    // You might want to display a message to the user or provide a fallback.
+                });
+            } else {
+                console.error('Audio element not found.');
+            }
+        });</script>
 </body>
 </html>
