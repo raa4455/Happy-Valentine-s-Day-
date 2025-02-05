@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: #fff;
+            border: 2px solid #f4b9d6;
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .image {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .input-container {
+            margin-top: 10px;
+        }
+        .input-container input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+        }
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .keypad button {
+            background: #f4b9d6;
+            border: none;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .keypad button:hover {
+            background: #e095ba;
+        }
+        .enter-button {
+            margin-top: 15px;
+            background: #e095ba;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .enter-button:hover {
+            background: #d084a8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Happy Valentine's Day</h3>
+        <img src="p1.jpg" alt="Valentine Image" class="image">
+        <div class="input-container">
+            <input type="password" id="password" placeholder="Enter your password" readonly>
+        </div>
+        <div class="keypad">
+            <button onclick="addToPassword('1')">1</button>
+            <button onclick="addToPassword('2')">2</button>
+            <button onclick="addToPassword('3')">3</button>
+            <button onclick="addToPassword('4')">4</button>
+            <button onclick="addToPassword('5')">5</button>
+            <button onclick="addToPassword('6')">6</button>
+            <button onclick="addToPassword('7')">7</button>
+            <button onclick="addToPassword('8')">8</button>
+            <button onclick="addToPassword('9')">9</button>
+            <button onclick="clearPassword()">*</button>
+            <button onclick="addToPassword('0')">0</button>
+            <button onclick="clearPassword()">#</button>
+        </div>
+        <button class="enter-button" onclick="submitPassword()">Enter</button>
+    </div>
+
+    <script>
+        function addToPassword(value) {
+            const passwordField = document.getElementById('password');
+            passwordField.value += value;
+        }
+
+        function clearPassword() {
+            const passwordField = document.getElementById('password');
+            passwordField.value = '';
+        }
+
+        function submitPassword() {
+            const passwordField = document.getElementById('password');
+            const correctPassword = "444455"; // Replace with your desired password
+            if (passwordField.value === correctPassword) {
+                window.location.href = "2.html"; // Replace with the URL of the next page
+            } else {
+                alert('Incorrect password. Please try again.');
+                clearPassword();
+            }
+        }
+    </script>
+</body>
+</html>

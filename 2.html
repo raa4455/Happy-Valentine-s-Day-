@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe4e1;
+        }
+        .container {
+            background: #fff;
+            border: 3px solid #f4b9d6;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #f06292;
+            margin-bottom: 10px;
+        }
+        .time-container {
+            font-size: 18px;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-weight: bold;
+            font-size: 22px;
+            color: #ad1457;
+        }
+        .timer div {
+            text-align: center;
+        }
+        .timer div span {
+            display: block;
+            font-size: 14px;
+            color: #880e4f;
+        }
+        .next-page-button {
+            margin-top: 20px;
+            background: #f06292;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .next-page-button:hover {
+            background: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>How Long Have We Been Together? ♥</h1>
+        <div class="time-container" id="timeTogether">0 Months 0 Days</div>
+        <div class="timer" id="timer">
+            <div>
+                <div id="days">0</div>
+                <span>Days</span>
+            </div>
+            <div>
+                <div id="hours">0</div>
+                <span>Hrs</span>
+            </div>
+            <div>
+                <div id="minutes">0</div>
+                <span>Mins</span>
+            </div>
+            <div>
+                <div id="seconds">0</div>
+                <span>Secs</span>
+            </div>
+        </div>
+        <a href="3.html" class="next-page-button">Bora♥Nika</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // ... (rest of your code, including the DOM element selections)
+
+    function calculateTimeTogether(startDate) {
+        const now = new Date();
+        const timeDifference = now - startDate;
+
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+        const seconds = Math.floor((timeDifference / 1000) % 60);
+
+        // More accurate Years, Months, and Days calculation:
+        let years = now.getFullYear() - startDate.getFullYear();
+        let months = now.getMonth() - startDate.getMonth();
+        let daysRemaining = 0;
+
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
+
+        const testDate = new Date(startDate.getFullYear() + years, startDate.getMonth() + months, startDate.getDate());
+        if (testDate > now) {
+            months--;
+            daysRemaining = Math.floor((now - new Date(startDate.getFullYear() + years, startDate.getMonth() + months, startDate.getDate())) / (1000 * 60 * 60 * 24));
+        } else {
+            daysRemaining = Math.floor((now - testDate) / (1000 * 60 * 60 * 24));
+        }
+
+        document.getElementById("timeTogether").textContent = `${years} Years ${months} Months ${daysRemaining} Days`;
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+    }
+
+    // *** AUTO-SETTING THE START DATE ***
+    const urlParams = new URLSearchParams(window.location.search);
+    let providedStartDate = urlParams.get('start_date'); // Get the start date from the URL parameter
+
+    let relationshipStartDate;
+
+    if (providedStartDate) {
+        relationshipStartDate = new Date(providedStartDate);
+        if (isNaN(relationshipStartDate)) {  // Check if it's a valid date
+            console.error("Invalid date format in URL parameter. Using default date.");
+            relationshipStartDate = new Date("2024-05-19T00:00:00"); // Default date (fallback)
+        }
+    } else {
+      relationshipStartDate = new Date("2024-05-19T00:00:00"); // Default date if no parameter provided
+      console.warn("No 'start_date' parameter provided in URL. Using default date.");
+    }
+
+
+
+    calculateTimeTogether(relationshipStartDate);  // Initial calculation
+    setInterval(() => calculateTimeTogether(relationshipStartDate), 1000);
+
+});
+    </script>
+</body>
+</html>
