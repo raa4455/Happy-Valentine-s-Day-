@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 
     <title class="font">Happy Valentine's Day</title>
@@ -19,14 +20,17 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f8f9fa;
+            background-color: #ffe4e1;
+            touch-action: manipulation;
         }
         .container {
+            /* margin-top: 100px; */
             background: #fff;
             border: 2px solid #f4b9d6;
             border-radius: 15px;
             padding: 20px;
-            width: 300px;
+            width: 500px;
+            height: auto;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
@@ -39,7 +43,7 @@
             margin-top: 10px;
         }
         .input-container input {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
@@ -58,7 +62,7 @@
             border: none;
             border-radius: 5px;
             padding: 15px;
-            font-size: 18px;
+            font-size: 15px;
             color: #fff;
             cursor: pointer;
             transition: background 0.3s;
@@ -81,6 +85,7 @@
             background: #d084a8;
         }
         
+        
     </style>
 </head>
 <body>
@@ -100,11 +105,10 @@
             <button onclick="addToPassword('7')">7</button>
             <button onclick="addToPassword('8')">8</button>
             <button onclick="addToPassword('9')">9</button>
-            <button onclick="clearPassword()">*</button>
+            <button onclick="backspacePassword()">←</button>
             <button onclick="addToPassword('0')">0</button>
-            <button onclick="clearPassword()">#</button>
+            <button onclick="submitPassword()">↵</button>
         </div>
-        <button class="enter-button" onclick="submitPassword()">Enter</button>
     </div>
 
     <script>
@@ -112,6 +116,11 @@
             const passwordField = document.getElementById('password');
             passwordField.value += value;
         }
+        function backspacePassword() {
+    const passwordField = document.getElementById('password');
+    passwordField.value = passwordField.value.slice(0, -1); // Remove last character
+}
+
 
         function clearPassword() {
             const passwordField = document.getElementById('password');
